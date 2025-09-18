@@ -16,17 +16,17 @@
           {
             "group": "Get Started",
             "pages": [
-              "index",
-              "sandbox-vs-live-mode",
-              "api-authentication",
-              "rate-limits",
-              "error-codes"
+              "get-started/index",
+              "get-started/sandbox-vs-live-mode",
+              "get-started/api-authentication",
+              "get-started/rate-limits",
+              "get-started/error-codes"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "API Guide",
             "pages": [
-              "essentials/markdown",
+              "api-guide/create-order",
               "essentials/code",
               "essentials/images",
               "essentials/settings",

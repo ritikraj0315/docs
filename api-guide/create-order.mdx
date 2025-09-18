@@ -1,0 +1,84 @@
+---
+title: "Create Order"
+description: "The Create Order API allows merchants to initiate a payment order with customer and payment details. It returns a unique order ID and a payment_url that redirects the customer for payment completion."
+---
+
+## Endpoint
+
+**POST** `/v1/payments/createOrderRequest`
+
+This endpoint is used to:
+
+- Generate a unique order for a payment
+- Optionally pass a custom order ID
+- Redirect the customer to a success URL after payment
+
+## Headers
+
+| Name            | Value                                 |
+| :-------------- | :------------------------------------ |
+| `Content-Type`  | `application/x-www-form-urlencoded`   |
+| `Authorization` | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name              | Type    | Required | Description                                           | Example                       |
+| :---------------- | :------ | :------- | :---------------------------------------------------- | :---------------------------- |
+| `mid`             | string  | Yes      | Merchant ID assigned by UPITranzact                   | `ABC`                         |
+| `amount`          | integer | Yes      | Payment amount (between 1 - 100000)                   | `200`                         |
+| `order_id`        | string  | No       | Custom unique order ID                                | `bd79da4cccff1`               |
+| `redirect_url`    | string  | Yes      | URL to redirect the customer after successful payment | `https://example.com/success` |
+| `note`            | string  | Yes      | Payment remark                                        | `Add Money`                   |
+| `customer_name`   | string  | Yes      | Full name of the customer                             | `John`                        |
+| `customer_email`  | string  | Yes      | Valid email address of the customer                   | `john@example.com`            |
+| `customer_mobile` | string  | Yes      | Valid 10-digit mobile number                          | `0123456789`                  |
+
+## Code Example
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/payments/createOrderRequest",
+  {
+    mid: "Your Merchant ID", // Example: ABC
+    amount: "200",
+    order_id: "bd79da4cc3ff1", // Optional
+    redirect_url: "https://example.com/success",
+    note: "Add money",
+    customer_name: "John",
+    customer_email: "john@example.com",
+    customer_mobile: "0123456789",
+  },
+  {
+    headers: {
+      Authorization: "Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==",
+    },
+  }
+);
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+  "status": true,
+  "statusCode": 200,
+  "msg": "Order request created successfully",
+  "data": {
+    "orderId": "utz_ccxxzsdf",
+    "payment_url": "https://upitz.com/checkout/payment/xxxxxxx..."
+  }
+}
+```
+
+
+```json 409
+{
+    "status": false,
+    "statusCode": 409,
+    "msg": "Order ID already exists"
+}
+```
+
+</CodeGroup>

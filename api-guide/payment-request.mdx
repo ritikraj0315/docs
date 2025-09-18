@@ -1,0 +1,110 @@
+---
+title: "Payment Request"
+description: "The Payment Request endpoint allows merchants to initiate a UPI payment request using a customer's UPI ID. Customers will complete the transaction via their preferred UPI app."
+---
+
+## Endpoint
+
+```
+POST /v1/payments/createPaymentRequest
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/payments/createPaymentRequest",
+  {
+    mid: "Your Merchant ID", // Example: ABC
+    amount: "Numeric value between 1-100000", // Example: 200
+    order_id: "Unique order ID", // Example: bd79da4cc3ff1 (optional)
+    vpa: "Customer UPI Id", // Example: upiId@oksbi
+    note: "Add money", // Payment remark
+    customer_name: "John",
+    customer_email: "john@example.com",
+    customer_mobile: "Your Customer Mobile", // Must be a valid phone number
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `mid`: Your merchant identifier.
+- `amount`: Must be a numeric value between 1 and 100000.
+- `order_id`: A unique string for transaction tracking (optional).
+- `vpa`: UPI ID of the customer.
+- `note`: Payment remark.
+- `customer_name`: Full name of the customer.
+- `customer_email`: A valid email address.
+- `customer_mobile`: A valid mobile number.
+- `Authorization`: Must be in the format `Basic base64(public_key:secret_key)`.
+
+> **Make sure to replace placeholder values with actual data before executing.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name            | Type    | Description                         | Example                                     | Required |
+| :-------------- | :------ | :---------------------------------- | :------------------------------------------ | :------- |
+| mid             | string  | Merchant ID assigned by UPITranzact | ABC                                         | Yes      |
+| amount          | integer | The total amount                    | 200                                         | Yes      |
+| order_id        | string  | Unique identifier for the order     | bd79da4cccff1                               | No       |
+| vpa             | string  | Customer UPI ID                     | upiId@oksbi                                 | Yes      |
+| note            | string  | Remark for the payment              | Add Money                                   | Yes      |
+| customer_name   | string  | Customer's full name                | John                                        | Yes      |
+| customer_email  | string  | Customer's email address            | [john@example.com](mailto:john@example.com) | Yes      |
+| customer_mobile | string  | Customer's mobile number            | 0123456789                                  | Yes      |
+
+## Authorization
+
+Requests must include the `Authorization` header with a Base64-encoded string of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+    "status": true,
+    "statusCode": 200,
+    "msg": "Payment request created successfully",
+    "data": {
+        "orderId": "utz_ccxxzsdf",
+        "payment_url": "https://upitz.com/checkout/payment/xxxxxxx..."
+    }
+}
+```
+
+
+```json 409
+{
+    "status": false,
+    "statusCode": 409,
+    "msg": "Order ID already exists"
+}
+```
+
+</CodeGroup>

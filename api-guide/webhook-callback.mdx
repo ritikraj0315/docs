@@ -1,0 +1,51 @@
+---
+title: "Webhook Callback"
+description: "You will recieve a instant callback carrying transaction status and data."
+---
+
+You can use this data to update your transaction status at your end or anything you implement.
+
+Note: Callback URL is needed from your side. You have to create it on your server. Example your callback url is - https://yourdomain.com/callback. This route should be resolve by POST method request.
+
+## Response
+
+<CodeGroup>
+
+```json Dynamic Callback Response
+{
+  "status": true,
+  "statusCode": 200,
+  "txnStatus": "SUCCESS",
+  "msg": "Transaction is successful",
+  "data": {
+    "paymentType": "Dynamic",
+    "amount": "500",
+    "orderId": "MREF123",
+    "successDate": "2023-12-31T23:59:59Z",
+    "UTR": "UTR123456",
+    "payerName": "John Doe",
+    "payeeUPI": "john@upi"
+  }
+}
+```
+
+
+```json Static Callback Response
+{
+  "status": true,
+  "statusCode": 200,
+  "txnStatus": "SUCCESS",
+  "msg": "Transaction is successful",
+  "data": {
+    "paymentType": "Static",
+    "amount": "500",
+    "orderId": "MREF123",
+    "successDate": "2023-12-31T23:59:59Z",
+    "UTR": "UTR123456",
+    "payerName": "John Doe",
+    "payeeUPI": "john@upi"
+  }
+}
+```
+
+</CodeGroup>

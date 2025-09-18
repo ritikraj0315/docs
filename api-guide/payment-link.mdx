@@ -1,0 +1,102 @@
+---
+title: "Payment Link"
+description: "The Payment Link endpoint allows merchants to generate a custom payment link that can be shared with customers to collect payments via UPI."
+---
+
+## Endpoint
+
+```
+POST /v1/payments/createPaymentLink
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/payments/createPaymentLink",
+  {
+    mid: "Your Merchant ID", // Example: ABC
+    amount: "Numeric value between 1-100000", // Example: 200
+    note: "Rent from customer", // Payment remark
+    customer_name: "John",
+    customer_email: "john@example.com",
+    customer_mobile: "Your Customer Mobile", // Must be a valid phone number
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `mid`: Your merchant identifier.
+- `amount`: Must be a numeric value between 1 and 100000.
+- `note`: Remark or purpose of the payment.
+- `customer_name`: Full name of the customer.
+- `customer_email`: A valid email address.
+- `customer_mobile`: A valid mobile number.
+- `Authorization`: Must be in the format `Basic base64(public_key:secret_key)`.
+
+> **Ensure all placeholder values are replaced before executing.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name            | Type    | Description                         | Example                                     | Required |
+| :-------------- | :------ | :---------------------------------- | :------------------------------------------ | :------- |
+| mid             | string  | Merchant ID assigned by UPITranzact | ABC                                         | Yes      |
+| amount          | integer | The total amount                    | 200                                         | Yes      |
+| note            | string  | Remark for the payment              | Rent from customer                          | Yes      |
+| customer_name   | string  | Customer's full name                | John                                        | Yes      |
+| customer_email  | string  | Customer's email address            | [john@example.com](mailto:john@example.com) | Yes      |
+| customer_mobile | string  | Customer's mobile number            | 0123456789                                  | Yes      |
+
+## Authorization
+
+Requests must include the `Authorization` header with a Base64-encoded string of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Successful Response
+
+<CodeGroup>
+
+```json 200
+{
+    "status": true,
+    "statusCode": 200,
+    "msg": "Payment link created successfully",
+    "data": {
+        "payment_link": "https://upitranzact.com/paylink/xyz123"
+    }
+}
+```
+
+
+```json 409
+{
+    "status": false,
+    "message": "Authorization header is required."
+}
+```
+
+</CodeGroup>

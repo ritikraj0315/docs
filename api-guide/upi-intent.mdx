@@ -1,0 +1,113 @@
+---
+title: "UPI Intent"
+description: "The UPI Intent endpoint enables you to initiate a UPI payment by redirecting customers to a UPI-compatible app. Once the payment is completed, the customer is redirected to a custom URL of your choice."
+---
+
+## Endpoint
+
+```
+POST /v1/payments/createPaymentIntent
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/payments/createPaymentIntent",
+  {
+    mid: "Your Merchant ID", // Example: ABC
+    amount: 200,
+    order_id: "bd79da4cc3ff1", // Optional
+    redirect_url: "https://example.com/success",
+    note: "Add money",
+    customer_name: "John",
+    customer_email: "john@example.com",
+    customer_mobile: "0123456789",
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `mid`: Your merchant identifier assigned by UPITranzact.
+- `amount`: Numeric value between 1 and 100000.
+- `order_id`: Optional unique ID to track transaction.
+- `redirect_url`: URL to which the user will be redirected after payment.
+- `note`: Description or remark for the payment.
+- `customer_name`: Name of the customer.
+- `customer_email`: Valid email address of the customer.
+- `customer_mobile`: Customer’s valid mobile number.
+- `Authorization`: Header in the format `Basic base64(public_key:secret_key)`.
+
+> **Replace all placeholders with your actual values before executing.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name            | Type    | Description                                       | Example                                     | Required |
+| :-------------- | :------ | :------------------------------------------------ | :------------------------------------------ | :------- |
+| mid             | string  | Merchant ID assigned by UPITranzact               | ABC                                         | Yes      |
+| amount          | integer | Total transaction amount                          | 200                                         | Yes      |
+| order_id        | string  | Unique order identifier for tracking              | bd79da4cc3ff1                               | No       |
+| redirect_url    | string  | URL to redirect customer after successful payment | https://example.com/success                 | Yes      |
+| note            | string  | Payment remark or purpose                         | Add Money                                   | Yes      |
+| customer_name   | string  | Customer’s full name                              | John                                        | Yes      |
+| customer_email  | string  | Customer’s email address                          | [john@example.com](mailto:john@example.com) | Yes      |
+| customer_mobile | string  | Customer’s 10-digit mobile number                 | 0123456789                                  | Yes      |
+
+## Authorization
+
+Provide the Authorization header using the Base64 encoding of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Successful Response Example
+
+```json
+{
+    "status": true,
+    "statusCode": 200,
+    "msg": "Payment Intent created successfully",
+    "data": {
+        "intent": "Link starts with upi://",
+        "phonepe": "PhonePe UPI Intent Link",
+        "paytm": "Paytm UPI Intent Link",
+        "gpay": "Google Pay UPI Intent Link",
+        "dynamicQR": "Dynamic QR Link",
+        "expiry": "2025-01-20 11:23:10",
+        "amount": "115",
+        "orderId": "utz_6b3ff790-XXX"
+    }
+}
+```
+
+## Error Example (Order Already Exists)
+
+```json
+{
+  "status": false,
+  "statusCode": 409,
+  "msg": "Order ID already exists"
+}
+```

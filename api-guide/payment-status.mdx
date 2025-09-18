@@ -1,0 +1,92 @@
+---
+title: "Payment Status"
+description: "The Payment Status endpoint allows you to check the status of a payment using the unique order ID. This is useful for verifying whether a customer has completed a transaction via UPI."
+---
+
+## Endpoint
+
+```
+POST /v1/payments/checkPaymentStatus
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/payments/checkPaymentStatus",
+  {
+    mid: "Your Merchant ID", // Example: ABC
+    order_id: "Your order ID", // Example: bd79da4cc3ff1
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `mid`: Your merchant identifier.
+- `order_id`: The unique order ID used to track the transaction.
+- `Authorization`: Must be in the format `Basic base64(public_key:secret_key)`.
+
+> **Ensure all placeholder values are replaced with real data.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name     | Type   | Description                          | Example       | Required |
+| :------- | :----- | :----------------------------------- | :------------ | :------- |
+| mid      | string | Merchant ID assigned by UPITranzact  | ABC           | Yes      |
+| order_id | string | Unique identifier of the transaction | bd79da4cc3ff1 | Yes      |
+
+## Authorization
+
+Requests must include the `Authorization` header with a Base64-encoded string of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Successful Response Example
+
+```json
+{
+    "status": true,
+    "statusCode": 200,
+    "txnStatus": "SUCCESS",
+    "msg": "Payment successful",
+    "data": {
+        "amount": 1.08,
+        "UTR": "523504870405",
+        "order_id": "uptz_2848129210ud13"
+    }
+}
+```
+
+## Error Example (Transaction Not Found)
+
+```json
+{
+    "status": false,
+    "statusCode": 200,
+    "txnStatus": "PENDING",
+    "msg": "Transaction not found"
+}
+```

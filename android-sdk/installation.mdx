@@ -1,0 +1,21 @@
+---
+title: "Installation"
+---
+
+To integrate the **UPITranzact** SDK into your Android project, add the following dependency in your **build.gradle** file:
+
+```
+implementation("com.upitranzact:upitranzact:1.1.0")
+```
+
+## Initialization
+
+Before starting a payment, initialize the SDK with your credentials:
+
+```
+UpiTranzactSDK sdk = new UpiTranzactSDK(MainActivity.this, "PUBLIC_KEY", "SECRET_KEY", "MERCHANT_ID");
+```
+
+- `PUBLIC_KEY`: Your public key provided by UPITranzact.
+- `SECRET_KEY`: Your secret key for authentication.
+- `MERCHANT_ID`: Your unique merchant identifier.

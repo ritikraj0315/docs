@@ -1,0 +1,50 @@
+---
+title: "WHMCS Plugin"
+description: "This guide will walk you through integrating the UPITranzact Payment Gateway into your WHMCS billing system."
+---
+
+## Prerequisites
+
+Make sure you have:
+
+- WHMCS version **7.10 or higher**.
+- PHP version **7.2 or above**.
+- cURL and JSON enabled on your server.
+- A valid **UPITranzact Merchant Account** with API Key and Secret Key.
+
+## Step 1: Download the Plugin
+
+Download the latest version of the UPITranzact WHMCS plugin:
+
+👉 [Download Plugin](https://github.com/user-attachments/files/20256381/UPITranzact.WHMCS.Module.zip)
+
+## Step 2: Upload Files to WHMCS
+
+1. Unzip the downloaded plugin file.
+2. Upload the contents to your WHMCS installation directory:
+
+   ```
+   /your-whmcs-root/modules/gateways/
+   /your-whmcs-root/modules/gateways/callback/
+   ```
+3. Ensure the following files are uploaded:
+   - `upitranzact.php` → `/modules/gateways/`
+   - `upitranzact_callback.php` (callback handler) → `/modules/gateways/callback/`
+
+## Step 3: Activate the Gateway
+
+1. Log in to your **WHMCS Admin Panel**.
+2. Navigate to **Setup → Payments → Payment Gateways**.
+3. Click the **"All Payment Gateways"** tab.
+4. Find and activate **UPITranzact**.
+5. Enter your:
+   - **Merchant Id**
+   - **API Key**
+   - **Secret Key**
+6. Click **Save Changes**.
+
+## Step 4: Go Live
+
+1. Disable Test Mode.
+2. Use **live API credentials**.
+3. Confirm that payments are being successfully received and invoices are being marked as paid.

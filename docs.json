@@ -33,6 +33,27 @@
               "api-guide/payment-status",
               "api-guide/webhook-callback"
             ]
+          },
+          {
+            "group": "Android SDK",
+            "pages": [
+              "android-sdk/introduction",
+              "android-sdk/installation",
+              "android-sdk/initiate-payment"
+            ]
+          },
+          {
+            "group": "Flutter SDK",
+            "pages": [
+              "flutter-sdk/introduction"
+            ]
+          },
+          {
+            "group": "Plugins",
+            "pages": [
+              "plugin/whmcs-plugin",
+              "plugin/woocommerce-plugin"
+            ]
           }
         ]
       },

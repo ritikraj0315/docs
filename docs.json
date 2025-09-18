@@ -27,11 +27,11 @@
             "group": "API Guide",
             "pages": [
               "api-guide/create-order",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "api-guide/payment-request",
+              "api-guide/payment-link",
+              "api-guide/upi-intent",
+              "api-guide/payment-status",
+              "api-guide/webhook-callback"
             ]
           }
         ]

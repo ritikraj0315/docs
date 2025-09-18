@@ -81,18 +81,18 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "Dashboard",
+          "href": "https://merchant.upitranzact.com/dashboard",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
+          "anchor": "Feature Request",
+          "href": "https://forms.gle/Mu57zYucCaUXf8YNA",
           "icon": "slack"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://www.upitranzact.com/blog",
           "icon": "newspaper"
         }
       ]

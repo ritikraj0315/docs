@@ -1,0 +1,59 @@
+---
+title: "API Authentication"
+description: "All API requests require authentication to ensure secure communication between your application and UPITranzact servers"
+---
+
+## Required Headers
+
+| Header Name     | Value Format                          | Required |
+| :-------------- | :------------------------------------ | :------- |
+| `Authorization` | `Basic base64(public_key:secret_key)` | Yes      |
+| `Content-Type`  | `application/json`                    | Yes      |
+
+## How to Generate Authorization Header
+
+To authenticate requests, include the `Authorization` header in the format below:
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+### Step-by-Step:
+
+1. Concatenate your `public_key` and `secret_key` with a colon (`:`)\
+   **Format:**
+
+   ```
+   public_key:secret_key
+   ```
+2. Encode the result in Base64.
+3. Add it to the `Authorization` header like so:
+
+```
+Authorization: Basic <Base64_Encoded_String>
+```
+
+### Example
+
+If your credentials are:
+
+- **Public Key**: `your_public_key`
+- **Secret Key**: `your_secret_key`
+
+Concatenate:
+
+```
+your_public_key:your_secret_key
+```
+
+Base64 encode the string:
+
+```
+eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+Set the header:
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```

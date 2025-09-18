@@ -17,8 +17,10 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "sandbox-vs-live-mode",
+              "api-authentication",
+              "rate-limits",
+              "error-codes"
             ]
           },
           {

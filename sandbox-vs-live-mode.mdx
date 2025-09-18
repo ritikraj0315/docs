@@ -1,0 +1,31 @@
+---
+title: "Sandbox vs Live Mode"
+description: "UPITranzact provides two environments for API usage: Sandbox for testing and Live for production."
+---
+
+## UAT Mode
+
+Use the **UAT environment** to test your integration and simulate payment flows with **dummy data**.
+
+- **Base URL:**
+
+  ```
+  https://uat-api.upitranzact.com
+  ```
+- No real money is transferred.
+- Ideal for development, testing, and debugging.
+
+## Live Mode
+
+Use the **live environment** for **real transactions** once your integration is ready for production.
+
+- **Base URL:**
+
+  ```
+  https://api.upitranzact.com
+  ```
+- Real payments are processed through this endpoint.
+
+## Important Note
+
+> Make sure to **switch from sandbox to live mode** in your base URL and credentials **before going live**.

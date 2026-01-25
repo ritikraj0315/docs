@@ -1,4 +1,102 @@
 ---
-title: 'Create Collect Request'
+title: "Create Collect Request"
+description: "The Create Collect Request endpoint allows partners to initiate a UPI payment request using a customer’s UPI ID. Customers will complete the transaction via their preferred UPI app."
 ---
 
+## Endpoint
+
+```
+POST /v1/partner/createCollectRequest
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/partner/createCollectRequest",
+  {
+	pid: "Your Partner ID", // eg. PABC
+    mid: "Your Merchant ID", // Example: ABC
+    amount: "Numeric value between 1-100000", // Example: 200
+    merchantReferenceId: "Unique order ID", // Example: ORD12345 (optional)
+    vpa: "Customer UPI Id", // Example: upiId@oksbi
+    customer_name: "John",
+    customer_email: "john@example.com",
+    customer_mobile: "Your Customer Mobile", // Must be a valid phone number
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `pid`: Your partner identifier.
+- `mid`: Your merchant identifier.
+- `amount`: Must be a numeric value between 1 and 100000.
+- `merchantReferenceId`: A unique string for transaction tracking (optional).
+- `vpa`: UPI ID of the customer.
+- `customer_name`: Full name of the customer.
+- `customer_email`: A valid email address.
+- `customer_mobile`: A valid mobile number.
+- `Authorization`: Must be in the format `Basic base64(public_key:secret_key)`.
+
+> **Make sure to replace placeholder values with actual data before executing.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name                | Type    | Description                     | Example                                     | Required |
+| :------------------ | :------ | :------------------------------ | :------------------------------------------ | :------- |
+| pid                 | string  | Your Partner ID                 | PABC                                        | Yes      |
+| mid                 | string  | Merchant ID                     | ABC                                         | Yes      |
+| amount              | integer | The total amount                | 100                                         | Yes      |
+| merchantReferenceId | string  | Unique identifier for the order | ORD12345                                    | Yes      |
+| vpa                 | string  | Customer UPI ID                 | upiId@oksbi                                 | Yes      |
+| customer_name       | string  | Customer's full name            | John                                        | Yes      |
+| customer_email      | string  | Customer's email address        | [john@example.com](mailto:john@example.com) | Yes      |
+| customer_mobile     | string  | Customer's mobile number        | 0123456789                                  | Yes      |
+
+## Authorization
+
+Requests must include the `Authorization` header with a Base64-encoded string of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+    "status": true,
+    "statusCode": 200,
+    "msg": "Collect request created successfully",
+    "data": {
+        "expiry": "2026-01-25T16:23:56+05:30",
+        "amount": "100",
+        "order_id": "ORD12345"
+    }
+}
+```
+
+</CodeGroup>

@@ -12,6 +12,25 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Dashboard",
+          "icon": "book-open-cover",
+          "href": "https://merchant.upitranzact.com/dashboard"
+        },
+        {
+          "anchor": "Feature Request",
+          "icon": "slack",
+          "href": "https://forms.gle/Mu57zYucCaUXf8YNA"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://www.upitranzact.com/blog"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -57,6 +76,42 @@
               "plugin/whmcs-plugin",
               "plugin/woocommerce-plugin"
             ]
+          },
+          {
+            "group": "Partner API",
+            "pages": [
+              "guides/partner-api/introduction",
+              {
+                "group": "Merchant",
+                "pages": [
+                  "guides/partner-api/merchant/create-merchant",
+                  "guides/partner-api/merchant/submit-merchant-kyc",
+                  "guides/partner-api/merchant/merchant-kyc-status"
+                ]
+              },
+              {
+                "group": "Payment",
+                "pages": [
+                  "guides/partner-api/payment/create-payment-request",
+                  "guides/partner-api/payment/create-collect-request",
+                  "guides/partner-api/payment/check-payment-status"
+                ]
+              },
+              {
+                "group": "Transaction",
+                "pages": [
+                  "guides/partner-api/transaction/fetch-transaction-list",
+                  "guides/partner-api/transaction/fetch-settlement-list"
+                ]
+              },
+              {
+                "group": "Callback",
+                "pages": [
+                  "guides/partner-api/webhook/transaction-callback",
+                  "guides/partner-api/callback/settlement-callback"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -80,26 +135,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Dashboard",
-          "href": "https://merchant.upitranzact.com/dashboard",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Feature Request",
-          "href": "https://forms.gle/Mu57zYucCaUXf8YNA",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://www.upitranzact.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

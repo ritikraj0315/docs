@@ -1,4 +1,67 @@
 ---
-title: 'Introduction'
+title: "Introduction"
+description: "Welcome to the UPITranzact Partner API documentation! This guide gives you an overview of what the Partner API is, who it’s for, and how to get started integrating it into your systems."
 ---
 
+The Partner API enables businesses, platforms, and partners to programmatically manage merchants, payments, transactions, and callback events with ease. With standardized REST-style endpoints, you can automate onboarding, reporting, transaction lookup, and event handling for UPI payments.
+
+## 🚀 What is the Partner API?
+
+The Partner API is a set of secure server-to-server REST APIs that let partners interact with UPITranzact platform functions. Instead of manual dashboard operations, you can:
+
+- **Create and manage merchant accounts**
+- **Initiate payment actions on behalf of merchants**
+- **Query transaction details**
+- **Handle callback events and notifications in real time**
+
+This is ideal for scalable platforms, marketplaces, payment facilitators, and ISVs that need direct programmatic control over payment flows.
+
+## Use Cases
+
+| Use Case                          | Description                                                          |
+| :-------------------------------- | :------------------------------------------------------------------- |
+| **Automated Merchant Onboarding** | Create and manage merchant profiles via API instead of manual setup. |
+| **Integrated Payments**           | Let partners embed UPI payment initiation inside applications.       |
+| **Transaction Insights**          | Programmatically fetch and analyze transaction records.              |
+| **Callback Handling**             | Receive asynchronous updates for payment and payout events.          |
+
+These scenarios help reduce manual work, improve speed, and enable deeper automation between systems.
+
+## Authentication & Security
+
+All Partner API requests are authenticated using secure keys provided by UPITranzact. Typically this involves:
+
+- **Basic auth or API tokens**
+- **Separate keys for live environments**
+
+Make sure to protect your credentials and never expose them in client-side code.
+
+> Refer to the _API Authentication_ section for full details on token formats, header requirements, and best practices. ([UPITranzact Docs](https://docs.upitranzact.com/get-started/api-authentication))
+
+## Rate Limits & Error Handling
+
+To ensure fair use and performance stability:
+
+- Requests may be subject to **rate limits**
+- Errors are returned in a standardized structure
+- Common error codes and messages are documented
+
+Learn more about this in the _Rate Limits_ and _Error Codes_ reference sections. ([UPITranzact Docs](https://docs.upitranzact.com/get-started/error-codes))
+
+## Next Steps
+
+Once you’re familiar with the basics:
+
+**Create Merchant** — Learn how to onboard new merchants through API\
+**Payments** — Discover endpoints to initiate and manage payments\
+**Transactions** — Fetch and analyze transaction data\
+**Callbacks** — Handle real-time events from the UPITranzact platform
+
+## Tips for Developers
+
+- Always test API flows first before going live
+- Use consistent request headers and content types (`Content-Type: application/json`)
+- Log responses and errors to aid troubleshooting
+- Validate all webhook data with your secret key for security
+
+---

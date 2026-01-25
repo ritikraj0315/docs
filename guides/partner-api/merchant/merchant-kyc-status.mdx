@@ -1,4 +1,62 @@
 ---
-title: 'Merchant KYC Status'
+title: "Merchant KYC Status"
+description: "The Merchant KYC Status API allows Partners to check merchant kyc status from their dashboard"
 ---
 
+## Endpoint
+
+**POS**`/v1/partner/checkMerchantKycStatus`
+
+This endpoint is used to:
+
+- Merchant KYC status
+- Merchant KYC Reason
+
+## Headers
+
+| Name            | Value                                 |
+| :-------------- | :------------------------------------ |
+| `Content-Type`  | `application/x-www-form-urlencoded`   |
+| `Authorization` | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name  | Type    | Required | Description                     | Example    |
+| :---- | :------ | :------- | :------------------------------ | :--------- |
+| `pid` | string  | Yes      | Partner ID given by UPITranzact | `ABC`      |
+| `mid` | integer | Yes      | Merchant ID                     | `MABC1234` |
+
+## Code Example
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/partner/checkMerchantKycStatus",
+  {
+    pid: "Your Partner ID", // Example: ABC
+    mid: "Merchant ID",
+  },
+  {
+    headers: {
+      Authorization: "Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==",
+    },
+  }
+);
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+    "success": true,
+    "message": "Merchant KYC fetch successfully",
+	"kycStatus": "PENDING", // REJECTED, APPROVED
+    "data": {
+        "merchantId": "ABC123", // Merhcant ID
+        "reason": "KYC is under process",
+    }
+}
+```
+
+</CodeGroup>

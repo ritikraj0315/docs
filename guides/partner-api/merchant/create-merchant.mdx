@@ -1,4 +1,79 @@
 ---
-title: 'Create Merchant'
+title: "Create Merchant"
+description: "The Create Merchant API allows Partners to create merchant from their dashboard"
 ---
 
+## Endpoint
+
+**POS**`/v1/partner/createMerchant`
+
+This endpoint is used to:
+
+- Create Merchant
+- Generate Merchant ID
+
+## Headers
+
+| Name            | Value                                 |
+| :-------------- | :------------------------------------ |
+| `Content-Type`  | `application/x-www-form-urlencoded`   |
+| `Authorization` | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name           | Type    | Required | Description                        | Example               |
+| :------------- | :------ | :------- | :--------------------------------- | :-------------------- |
+| `pid`          | string  | Yes      | Partner ID given by UPITranzact    | `ABC`                 |
+| `firstName`    | integer | Yes      | First name of the merchant         | `Pankaj`              |
+| `lastName`     | string  | Yes      | Last name of the merchant          | `Kumar`               |
+| `email`        | string  | Yes      | Valid email id of the merchant     | `pankaj@gmail.com`    |
+| `merchantType` | string  | Yes      | Merchant type                      | `static OR dynamic`   |
+| `phone`        | string  | Yes      | Valid phone number of the merchant | `91823452XX`          |
+| `businessName` | string  | Yes      | Business Name of the merchant      | `ABC Private Limited` |
+
+## Code Example
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/partner/createMerchant",
+  {
+    pid: "Your Partner ID", // Example: ABC
+    firstName: "Pankaj",
+    lastName: "Kumar",
+    email: "pankaj@example.com",
+    merchantType: "dynamic", // static OR dynamic
+    phone: "91823452XX",
+    businessName: "ABC Private Limited",
+  },
+  {
+    headers: {
+      Authorization: "Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==",
+    },
+  }
+);
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+    "success": true,
+    "message": "Merchant account created successfully",
+    "merchant": {
+        "id": "ca6e0c79-xxxx-4f5b-xxxx-xxxxxxxx",
+        "merchantId": "ABC77xxxx",
+        "firstName": "Pankaj",
+        "lastName": "Kumar",
+        "email": "pankaj@example.com",
+        "phone": "91823452xx",
+        "merchantType": "dynamic",
+        "businessName": "ABC Private Limited",
+        "businessReference": "229xxx",
+        "emailVerified": false
+    }
+}
+```
+
+</CodeGroup>

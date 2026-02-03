@@ -1,4 +1,87 @@
 ---
-title: 'Check Payment Status'
+title: "Check Payment Status"
 ---
 
+## Endpoint
+
+```
+POST /v1/partner/checkPaymentStatus
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/partner/checkPaymentStatus",
+  {
+	pid: "Your Partner ID", // eg. PABC
+    mid: "Your Merchant ID", // Example: ABC
+    merchantReferenceId: "Unique order ID", // Example: ORD12345
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `pid`: Your partner identifier.
+- `mid`: Your merchant identifier.
+- `merchantReferenceId`: A unique string for transaction tracking.
+- `Authorization`: Must be in the format `Basic base64(public_key:secret_key)`.
+
+> **Make sure to replace placeholder values with actual data before executing.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name                | Type   | Description                     | Example  | Required |
+| :------------------ | :----- | :------------------------------ | :------- | :------- |
+| pid                 | string | Your Partner ID                 | PABC     | Yes      |
+| mid                 | string | Merchant ID                     | ABC      | Yes      |
+| merchantReferenceId | string | Unique identifier for the order | ORD12345 | Yes      |
+
+## Authorization
+
+Requests must include the `Authorization` header with a Base64-encoded string of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+    "status": true,
+    "statusCode": 200,
+    "txnStatus": "SUCCESS",
+    "msg": "Payment successful",
+    "data": {
+        "amount": 199,
+        "UTR": "000367305231",
+        "order_id": "UTCP884811031541769098679"
+    }
+}
+```
+
+</CodeGroup>

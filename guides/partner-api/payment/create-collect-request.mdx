@@ -18,7 +18,7 @@ await axios.post(
 	pid: "Your Partner ID", // eg. PABC
     mid: "Your Merchant ID", // Example: ABC
     amount: "Numeric value between 1-100000", // Example: 200
-    merchantReferenceId: "Unique order ID", // Example: ORD12345 (optional)
+    merchantReferenceId: "Unique order ID", // Example: ORD12345
     vpa: "Customer UPI Id", // Example: upiId@oksbi
     customer_name: "John",
     customer_email: "john@example.com",
@@ -37,7 +37,7 @@ await axios.post(
 - `pid`: Your partner identifier.
 - `mid`: Your merchant identifier.
 - `amount`: Must be a numeric value between 1 and 100000.
-- `merchantReferenceId`: A unique string for transaction tracking (optional).
+- `merchantReferenceId`: A unique string for transaction tracking.
 - `vpa`: UPI ID of the customer.
 - `customer_name`: Full name of the customer.
 - `customer_email`: A valid email address.

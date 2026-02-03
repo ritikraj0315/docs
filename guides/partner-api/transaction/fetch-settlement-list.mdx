@@ -1,4 +1,95 @@
 ---
-title: 'Fetch Settlement List'
+title: "Fetch Settlement List"
 ---
 
+## Endpoint
+
+```
+POST /v1/partner/fetchSettlementList
+```
+
+## Example: Axios POST Request
+
+```javascript
+await axios.post(
+  "https://api.upitranzact.com/v1/partner/fetchSettlementList",
+  {
+	pid: "Your Partner ID", // eg. PABC
+    mid: "Your Merchant ID", // Example: ABC
+    s_date: "dd-mm-yyyy", // Example: 14-10-2025
+    e_date: "dd-mm-yyyy", // Example: 15-10-2025
+  },
+  {
+    headers: {
+      Authorization: "Basic base64(public_key:secret_key)"
+    }
+  }
+);
+```
+
+## Key Parameters
+
+- `pid`: Your partner identifier.
+- `mid`: Your merchant identifier.
+- `s_date`: List of transaction from data.
+- `e_date`: List of transaction till date
+- `Authorization`: Must be in the format `Basic base64(public_key:secret_key)`.
+
+> **Make sure to replace placeholder values with actual data before executing.**
+
+## Headers
+
+| Name          | Value                                 |
+| :------------ | :------------------------------------ |
+| Content-Type  | `application/x-www-form-urlencoded`   |
+| Authorization | `Basic base64(public_key:secret_key)` |
+
+## Request Body Parameters
+
+| Name   | Type   | Description     | Example    | Required |
+| :----- | :----- | :-------------- | :--------- | :------- |
+| pid    | string | Your Partner ID | PABC       | Yes      |
+| mid    | string | Merchant ID     | ABC        | Yes      |
+| s_date | string | dd-mm-yyyy      | 14-10-2025 | Yes      |
+| e_date | string | dd-mm-yyyy      | 15-10-2025 | Yes      |
+
+## Authorization
+
+Requests must include the `Authorization` header with a Base64-encoded string of `public_key:secret_key`.
+
+**Example Format:**
+
+```
+Authorization: Basic base64(public_key:secret_key)
+```
+
+**Example Encoded Header:**
+
+```
+Authorization: Basic eW91cl9wdWJsaWNfa2V5OnlvdXJfc2VjcmV0X2tleQ==
+```
+
+## Response Body
+
+<CodeGroup>
+
+```json 200
+{
+    "status": true,
+    "statusCode": 200,
+    "msg": "Settlements found",
+    "data": [
+        {
+            "amount": "1234.00",
+            "UTR": "24149202601040XXXXXXXXX",
+            "bankReferenceNumber": "26010410PSCBSXXX",
+            "status": "SUCCESS",
+            "merchant_id": "UPITRAXXX",
+            "initiationDate": "2026-01-04T04:32:42.000Z",
+            "created_at": "2026-01-04T06:37:02.000Z"
+        },
+  	]
+}
+```
+
+</CodeGroup>

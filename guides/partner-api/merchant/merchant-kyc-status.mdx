@@ -10,7 +10,7 @@ description: "The Merchant KYC Status API allows Partners to check merchant kyc 
 This endpoint is used to:
 
 - Merchant KYC status
-- Merchant KYC Reason
+- Merchant KYC fail Reason
 
 ## Headers
 
@@ -50,11 +50,12 @@ await axios.post(
 ```json 200
 {
     "success": true,
-    "message": "Merchant KYC fetch successfully",
-	"kycStatus": "PENDING", // REJECTED, APPROVED
+	"statusCode": 200,
+    "message": "Merchant KYC status retrieved successfully",
     "data": {
         "merchantId": "ABC123", // Merhcant ID
-        "reason": "KYC is under process",
+		"kycStatus": "PENDING", // PENDING, PROCESSING,RESUBMIT,DECLINED,APPROVED,SUBMITTED
+        "kycDeclineReason": "KYC is under process", // null
     }
 }
 ```

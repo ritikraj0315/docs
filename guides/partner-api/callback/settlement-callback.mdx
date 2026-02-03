@@ -1,4 +1,25 @@
 ---
-title: 'Settlement Callback'
+title: "Settlement Callback"
+description: "This callback is triggered and sent to the merchant’s partner upon receiving the settlement status."
 ---
 
+```
+{
+  "status": true,
+  "statusCode": 200,
+  "txnStatus": "SUCCESS",
+  "type": "SETTLEMENT",
+  "msg": "Settlement is successful",
+  "data": {
+    "mid": "MERCHANT123",
+    "pid": "PABC123",
+    "date": "2023-12-31T23:59:59Z",
+    "amount": "1000.00",
+    "utr": "UTR123456",
+    "txnStatus": "SUCCESS",
+    "bankReferenceNumber": "BANK123",
+    "mode": "NEFT",
+    "initiationDate": "2023-12-31T12:00:00Z",
+  }
+}
+```

@@ -1,4 +1,25 @@
 ---
-title: 'Transaction Callback'
+description: "This callback is triggered and sent to the merchant’s partner upon receiving the transaction status."
+title: "Transaction Callback"
 ---
 
+```
+{
+  "status": true,
+  "statusCode": 200,
+  "txnStatus": "SUCCESS",
+  "type": "TRANSACTION",
+  "msg": "Transaction is successful",
+  "data": {
+    "paymentType": "Dynamic",  //Static for Static-Qr Payments
+	"mid": "MERCHANT123",
+    "pid": "PABC123",
+    "amount": "100.00",
+    "merchantReferenceId": "ORD123",
+    "successDate": "2023-12-31T23:59:59Z",
+    "UTR": "UTR123456",
+    "payerName": "John Doe",
+    "payeeUPI": "john@upi"
+  }
+}
+```

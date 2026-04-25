@@ -145,7 +145,55 @@
         ]
       },
       {
-        "version": "V2"
+        "version": "V2",
+        "tabs": [
+          {
+            "tab": "Payment Gateway",
+            "groups": [
+              {
+                "group": "Payment Page",
+                "pages": [
+                  {
+                    "group": "Website Integration",
+                    "expanded": true,
+                    "pages": [
+                      {
+                        "group": "Standard Checkout",
+                        "pages": [
+                          {
+                            "group": "API Integration",
+                            "pages": [
+                              "introduction",
+                              "integration-steps",
+                              {
+                                "group": "API Reference",
+                                "pages": [
+                                  "authorization",
+                                  {
+                                    "group": "Create Payment",
+                                    "pages": [
+                                      "initiate-payment"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Payout"
+          },
+          {
+            "tab": "Bill Payments"
+          }
+        ]
       }
     ]
   },

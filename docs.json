@@ -188,7 +188,8 @@
                                     "pages": [
                                       "initiate-payment"
                                     ]
-                                  }
+                                  },
+                                  "order-status"
                                 ]
                               }
                             ]

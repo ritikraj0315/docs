@@ -146,6 +146,7 @@
       },
       {
         "version": "V2",
+        "default": true,
         "tabs": [
           {
             "tab": "Payment Gateway",

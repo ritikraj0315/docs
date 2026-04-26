@@ -1,4 +1,107 @@
 ---
-title: 'Welcome'
+title: "Welcome"
 ---
 
+Welcome to the official documentation for **Originpay** - a modern payment infrastructure built to help developers and businesses accept and manage payments with ease.
+
+Originpay provides simple, secure, and scalable APIs that allow you to integrate payments into your application quickly, whether you're building a startup or scaling an existing platform.
+
+---
+
+## 💡 What You Can Do with Originpay
+
+With Originpay APIs, you can:
+
+- Accept payments via **UPI, Cards, Net Banking, and Wallets**
+- Create and manage payment orders
+- Track payment status in real-time
+- Integrate custom or hosted checkout flows
+- Receive instant updates using webhooks
+
+---
+
+## ⚡ Key Highlights
+
+- **Developer-Friendly APIs** – Clean REST structure with predictable responses
+- **Secure Transactions** – Built with industry-standard authentication and encryption
+- **Flexible Integration** – Supports both hosted and custom checkout
+- **Reliable Infrastructure** – Designed for high availability and performance
+
+---
+
+## 🔐 Authentication
+
+All API requests must be authenticated using your API credentials:
+
+- **API Key (Public)**
+- **API Secret (Private)**
+
+You can authenticate using:
+
+- **Bearer Token (Recommended)**
+- **Basic Authentication**
+
+> ⚠️ Keep your secret key secure and never expose it on the frontend.
+
+---
+
+## 🌍 Base URL
+
+```text
+https://api.originpay.in
+```
+
+All requests must be made over HTTPS.
+
+---
+
+## 📦 API Versioning
+
+Originpay APIs are versioned to ensure stability:
+
+```text
+/v1/   → Stable  
+/v2/   → Latest (Recommended)
+```
+
+---
+
+## 🔁 Basic Payment Flow
+
+1. Create a payment/order via API
+2. Redirect user to checkout or collect payment details
+3. User completes the payment
+4. Verify payment status via API or webhook
+
+---
+
+## 🔔 Webhooks
+
+Webhooks allow your server to receive real-time payment updates such as:
+
+- payment.success
+- payment.failed
+- payment.pending
+
+Always verify webhook data before processing.
+
+---
+
+## 🚀 Get Started
+
+1. Generate your API credentials
+2. Choose your integration method
+3. Make your first API request
+4. Test and go live
+
+---
+
+## 📧 Support
+
+For any queries or integration support, contact us at:
+
+[**support@originpay.in**](mailto:support@originpay.in)
+
+---
+
+Build fast, secure, and reliable payment experiences with Originpay.

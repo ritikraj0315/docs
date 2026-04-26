@@ -158,7 +158,13 @@
             "tab": "Payment Gateway",
             "groups": [
               {
-                "group": "PAYMENT",
+                "group": "Get Started",
+                "pages": [
+                  "welcome"
+                ]
+              },
+              {
+                "group": "Payments",
                 "pages": [
                   {
                     "group": "Website Integration",

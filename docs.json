@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "aspen",
+  "theme": "maple",
   "name": "Originpay Docs",
   "colors": {
     "primary": "#5f44bb",
@@ -9,6 +9,12 @@
   },
   "appearance": {
     "default": "light"
+  },
+  "fonts": {
+  "family": "Inter",
+    "heading": {
+      "family": "Playfair Display"
+    }
   },
   "favicon": "/logo/favicon.ico",
   "navigation": {
@@ -152,10 +158,11 @@
             "tab": "Payment Gateway",
             "groups": [
               {
-                "group": "Payment Page",
+                "group": "PAYMENT",
                 "pages": [
                   {
                     "group": "Website Integration",
+                    "icon": "globe",
                     "expanded": true,
                     "pages": [
                       {

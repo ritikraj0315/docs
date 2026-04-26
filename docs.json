@@ -173,6 +173,7 @@
                     "pages": [
                       {
                         "group": "Standard Checkout",
+                        "expanded": true,
                         "pages": [
                           {
                             "group": "API Integration",

@@ -40,15 +40,18 @@ You can authenticate using:
 
 - **Bearer Token (Recommended)**
 
-> ⚠️ Keep your secret key secure and never expose it on the frontend.
+<Warning>
+  Keep your secret key secure and never expose it on the frontend.
+</Warning>
 
 ---
 
 ## Base URL
 
-```text
-https://api.originpay.in
-```
+| **Environment** | **HTTP Method** | **API** |
+| :-- | :-- | :-- |
+| `Sandbox` | `POST` | https://api-sand.originpay.in |
+| `Production` | `POST` | https://api.originpay.in |
 
 All requests must be made over HTTPS.
 

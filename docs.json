@@ -10,7 +10,7 @@
   "appearance": {
     "default": "light"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/favicon.ico",
   "navigation": {
     "global": {
       "anchors": [

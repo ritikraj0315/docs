@@ -1,4 +1,145 @@
 ---
-title: 'Authorization'
+title: "Authorization"
 ---
 
+The **Generate Authorization Token** endpoint is the entry point for all **Originpay API v2** requests. It authenticates your merchant account using API credentials and returns a short-lived **Bearer Token** required for accessing all protected endpoints.
+
+---
+
+| **Environment** | **HTTP Method** | **API** |
+| :-- | :-- | :-- |
+| `Sandbox` | `POST` | https://api-sand.originpay.in/v2/auth/token |
+| `Production` | `POST` | https://api.originpay.in/v2/auth/token |
+
+## Overview
+
+To interact with any v2 payment APIs, you must first obtain an **access token**. This token:
+
+- Authenticates your requests
+- Is valid for a limited time (**3600 seconds**)
+- Must be included in the `Authorization` header
+
+---
+
+## Endpoint Details
+
+| Attribute | Value |
+| --- | --- |
+| **URL** | `/v2/auth/token` |
+| **Method** | `POST` |
+| **Content-Type** | `application/x-www-form-urlencoded` |
+| **Auth Method** | Public Key & Secret Key |
+
+---
+
+## Request Parameters
+
+Send the request body as **form-urlencoded data**:
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `public_key` | `string` | Yes | Your merchant public API key |
+| `secret_key` | `string` | Yes | Your merchant secret API key |
+
+---
+
+## Success Response
+
+If authentication is successful and your account is eligible, the API returns:
+
+```json
+{
+  "success": true,
+  "data": {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "expires_in": 3600,
+    "issued_at": 1714131225,
+    "expires_at": 1714134825,
+    "token_type": "Bearer"
+  }
+}
+```
+
+### Response Fields
+
+| Field | Description |
+| --- | --- |
+| `access_token` | JWT token used as `Bearer <token>` in headers |
+| `expires_in` | Token validity in seconds (default: 3600) |
+| `issued_at` | Token issued time (Unix timestamp, IST) |
+| `expires_at` | Token expiry time (Unix timestamp, IST) |
+| `token_type` | Always `Bearer` |
+
+---
+
+## Using the Token
+
+Include the token in all protected API requests:
+
+```http
+Authorization: Bearer <access_token>
+```
+
+---
+
+## Error Responses
+
+Before issuing a token, multiple validations are performed (KYC, status, gateway, etc.).
+
+| Status Code | Message (`msg`) | Description |
+| --- | --- | --- |
+| `400` | Content-Type must be application/x-www-form-urlencoded | Invalid request format |
+| `400` | KYC verification not approved | Merchant KYC is pending |
+| `401` | User key not found | Invalid API credentials |
+| `403` | Business status is disabled | Merchant account inactive |
+| `404` | No valid gateway found | No active gateway configured |
+| `503` | Payment APIs are currently down for maintenance | System maintenance |
+
+---
+
+## Implementation Examples
+
+### CURL
+
+```bash
+curl -X POST https://api.originpay.in/v2/auth/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "public_key=YOUR_PUBLIC_KEY" \
+  -d "secret_key=YOUR_SECRET_KEY"
+```
+
+---
+
+### Node.js (Axios)
+
+```javascript
+const axios = require('axios');
+const qs = require('qs');
+
+const data = qs.stringify({
+  public_key: 'YOUR_PUBLIC_KEY',
+  secret_key: 'YOUR_SECRET_KEY'
+});
+
+axios.post('https://api.originpay.in/v2/auth/token', data, {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+.then(res => console.log(res.data))
+.catch(err => console.error(err.response?.data || err.message));
+```
+
+---
+
+## Important Notes
+
+- Always generate tokens from your **backend server only**
+- Never expose your `secret_key` in frontend code
+- Tokens expire after **1 hour** — refresh when needed
+- Avoid generating tokens for every request (cache until expiry)
+- All token activity is logged for **security and auditing**
+
+---
+
+This endpoint is the foundation of secure communication with **Originpay API v2**. Once authenticated, you can proceed with creating payment sessions and handling transactions.

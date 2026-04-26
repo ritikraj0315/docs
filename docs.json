@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
-  "name": "UPITranzact Docs",
+  "name": "Originpay Docs",
   "colors": {
-    "primary": "#8E52FF",
-    "light": "#8E52FF",
-    "dark": "#8E52FF"
+    "primary": "#5f44bb",
+    "light": "#5f44bb",
+    "dark": "#5f44bb"
   },
   "appearance": {
     "default": "light"
@@ -31,7 +31,7 @@
         {
           "anchor": "Blog",
           "icon": "newspaper",
-          "href": "https://www.upitranzact.com/blog"
+          "href": "https://www.originpay.in/blog"
         }
       ]
     },
@@ -205,13 +205,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:help@upitranzact.com"
+        "href": "mailto:support@originpay.in"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://merchant.upitranzact.com"
+      "href": "https://merchant.originpay.in"
     }
   },
   "footer": {

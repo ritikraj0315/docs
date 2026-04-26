@@ -1,4 +1,69 @@
 ---
-title: 'Introduction'
+title: "Introduction"
 ---
 
+The **Originpay API v2** is the latest generation of payment infrastructure designed to deliver enhanced security, improved performance, and a seamless developer experience. Built for modern applications, v2 introduces a structured and secure approach to handling payment workflows at scale.
+
+This version adopts an **OAuth2-inspired authentication mechanism**, where all requests are authorized using short-lived Bearer tokens instead of static credentials. It also standardizes the checkout process, ensuring consistency, reliability, and faster integration across different platforms.
+
+With **Originpay API v2**, developers get:
+
+- Secure **token-based authentication**
+- A **modular and scalable architecture**
+- Standardized **checkout flow**
+- Built-in validation for **merchant status and KYC**
+- Detailed **logging and monitoring** for debugging
+
+---
+
+## Prerequisites
+
+Before integrating with Originpay API v2, ensure you have:
+
+- A registered Originpay merchant account
+- Your **Public Key** and **Secret Key**
+- Basic understanding of REST APIs and HTTP requests
+- A backend server to securely handle API calls
+- A valid **redirect URL** for payment completion
+
+<Warning>
+  All sensitive operations (like token generation) must be performed on the backend.
+</Warning>
+
+---
+
+## Environments
+
+| Environment | Base URL |
+| --- | --- |
+| Sandbox | https://api-sand.originpay.in |
+| Production | [https://api.originpay.in](https://api.originpay.in) |
+
+<Note>
+  All requests must be made over HTTPS.
+</Note>
+
+---
+
+## API Endpoints
+
+| Module | Method | Endpoint |
+| --- | --- | --- |
+| Authentication | POST | /v2/auth/token |
+| Standard Checkout | POST | /v2/checkout/pay |
+
+<Info>
+  All endpoints (except authentication) require a valid Bearer token in the `Authorization `header.
+</Info>
+
+---
+
+## What’s Next?
+
+Now that you understand the basics of Originpay API v2:
+
+- Proceed to **Integration Steps** to implement the payment flow
+- Explore the **API Reference** for detailed request/response formats
+- Set up **Webhooks** to receive real-time payment updates
+
+You are now ready to start integrating and building secure payment experiences with Originpay.

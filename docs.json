@@ -207,7 +207,23 @@
             "tab": "Payout"
           },
           {
-            "tab": "Bill Payments"
+            "tab": "TSP Integration",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": [
+                  "tsp-integration",
+                  {
+                    "group": "TSP Headers",
+                    "pages": [
+                      "authorization-1",
+                      "http-headers-standard",
+                      "tsp-http-headers-v2-custom"
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

@@ -1,0 +1,93 @@
+---
+title: "Create a merchant"
+---
+
+The **Onboard Merchant** API allows authorized Technology Service Providers (TSP Partners) to programmatically register and provision new sub-merchant accounts under their partner ecosystem.
+
+## Integration Overview
+
+- **HTTP Method:** `POST`
+- **Endpoint:** `v2/partner/create-merchant`
+- **Authentication:** Required (Standard Partner Authorization)
+- **Supported Content-Types:** `application/x-www-form-urlencoded`
+
+## Headers
+
+| Header | Type | Required | Description |
+| :-- | :-- | :-- | :-- |
+| `Authorization` | string | **Yes** | Your active partner access token / authorization header. |
+| `Content-Type` | string | **Yes** | Specified payload format (e.g., `application/json`). |
+
+## Request Payload
+
+Provide the details of the merchant being onboarded in the request body.
+
+### Parameters
+
+| Field | Type | Required | Description & Constraints |
+| :-- | :-- | :-- | :-- |
+| `firstName` | string | **Yes** | First name of the merchant's primary contact (Max: 255 characters). |
+| `lastName` | string | **Yes** | Last name of the merchant's primary contact (Max: 255 characters). |
+| `email` | string | **Yes** | Valid and unique email address for the merchant account. |
+| `phone` | string | **Yes** | Exactly 10-digit mobile number (excluding country code). Must be unique. |
+| `businessName` | string | **Yes** | Registered name of the business entity (Max: 255 characters). |
+| `merchantType` | string | **Yes** | Accepted values: `"static"` or `"dynamic"`. |
+
+### Example Request (`application/json`)
+
+```json
+{
+  "firstName": "Rajesh",
+  "lastName": "Kumar",
+  "email": "rajesh.kumar@examplebusiness.in",
+  "phone": "9876543210",
+  "businessName": "Acme Retail Solutions",
+  "merchantType": "dynamic"
+}
+```
+
+## Response Specifications
+
+### 🟢 Successful Onboarding (`HTTP 201 Created`)
+
+Returns confirmation along with the assigned public and operational identifiers for the new merchant.
+
+```json
+{
+  "success": true,
+  "msg": "Merchant account created successfully",
+  "merchant": {
+    "id": "e4b2a1c3-7d8e-4f9a-8b1c-2d3e4f5a6b7c",
+    "merchantId": "ACMEX6B9F2A",
+    "firstName": "Rajesh",
+    "lastName": "Kumar",
+    "email": "rajesh.kumar@examplebusiness.in",
+    "phone": "9876543210",
+    "merchantType": "static",
+    "businessName": "Acme Retail Solutions",
+    "businessReference": "0045812",
+    "emailVerified": false
+  }
+}
+```
+
+#### Response Field Definitions
+
+- **`merchant.id`**: Unique system account UUID.
+- **`merchant.merchantId`**: Human-readable, alphanumeric unique identification string generated for this merchant.
+- **`merchant.businessReference`**: A unique 7-digit numeric reference string associated with the merchant's business entity.
+- **`merchant.emailVerified`**: Initial verification status indicator for the provided email address.
+
+### Error Handling & Troubleshooting
+
+If the request fails, the API returns a structured JSON error response detailing the reason.
+
+#### Error Response Format
+
+```json
+{
+  "success": false,
+  "statusCode": 400,
+  "msg": "Detail describing the specific validation or operational conflict"
+}
+```

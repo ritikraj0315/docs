@@ -1,0 +1,79 @@
+---
+title: "Merchant KYC Status"
+---
+
+This endpoint enables an authorized Technology Service Provider (TSP Partner) to retrieve the real-time Verification / KYC status of a specific merchant mapped under their reseller account hierarchy.
+
+## Integration Details
+
+- **HTTP Method:** `POST`
+- **Endpoint:** `/v2/partner/check-merchant-kyc-status`
+- **Authentication:** Required (Standard Partner Authorization)
+- **Supported Content-Types:** `application/json`, `application/x-www-form-urlencoded`
+
+## Request Headers
+
+| Header | Type | Required | Description |
+| :-- | :-- | :-- | :-- |
+| `Authorization` | string | **Yes** | Your active TSP Partner access token. |
+| `Content-Type` | string | **Yes** | Specified payload format (e.g., `application/json`). |
+
+## Request Payload
+
+Submit the target merchant's identifier in the request body.
+
+### Parameters
+
+| Field | Type | Required | Description |
+| :-- | :-- | :-- | :-- |
+| `merchant_id` | string | **Yes** | The unique system `merchant_id` assigned to the sub-merchant during onboarding. |
+
+### Example Request (`application/json`)
+
+```json
+{
+  "merchant_id": "ACMEX6B9F2A"
+}
+```
+
+## Response Specifications
+
+### Successful Retrieval (`HTTP 200 OK`)
+
+Returns the operational KYC status along with any related rejection/decline remarks if applicable.
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "msg": "Merchant KYC status retrieved successfully",
+  "data": {
+    "merchantId": "ACMEX6B9F2A",
+    "kycStatus": "APPROVED", // PENDING, PROCESSING,RESUBMIT,DECLINED,APPROVED,SUBMITTED
+    "kycDeclineReason": null
+  }
+}
+```
+
+#### Response Field Definitions
+
+- **`data.merchantId`**: The verified identifier string of the queried merchant.
+- **`data.kycStatus`**: Current platform assessment status. Typical values include:
+  - `"PENDING"`
+  - `"APPROVED"`
+  - `"REJECTED"` / `"DECLINED"`
+- **`data.kycDeclineReason`**: Explanatory string if the submission was rejected by the compliance team; otherwise returns `null`.
+
+### Error Handling & Responses
+
+If the request violates validation constraints or authorization policies, a structured error object is returned.
+
+#### Error Response Format
+
+```json
+{
+  "status": false,
+  "statusCode": 403,
+  "msg": "Partner KYC not approved"
+}
+```

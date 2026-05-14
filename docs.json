@@ -18,29 +18,6 @@
   },
   "favicon": "/logo/favicon.ico",
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Dashboard",
-          "icon": "box",
-          "color": {
-            "light": "#5f44bb",
-            "dark": "#5f44bb"
-          },
-          "href": "https://merchant.originpay.in/dashboard"
-        },
-        {
-          "anchor": "Feature Request",
-          "icon": "slack",
-          "href": "https://forms.gle/Mu57zYucCaUXf8YNA"
-        },
-        {
-          "anchor": "Blog",
-          "icon": "newspaper",
-          "href": "https://www.originpay.in/blog"
-        }
-      ]
-    },
     "versions": [
       {
         "version": "V1",
@@ -219,6 +196,14 @@
                       "authorization-1",
                       "http-headers-standard",
                       "tsp-http-headers-v2-custom"
+                    ]
+                  },
+                  {
+                    "group": "Merchant  Account",
+                    "pages": [
+                      "create-a-merchant",
+                      "merchant-kyc-status",
+                      "submit-merchant-kyc"
                     ]
                   }
                 ]
